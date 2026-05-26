@@ -1,19 +1,57 @@
-# ReadMate
+<p align="center">
+  <img src="Resources/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" width="120" alt="ReadMate">
+</p>
 
-A native macOS menu-bar app that instantly explains any text you select. Built with Swift and SwiftUI.
+<h1 align="center">ReadMate</h1>
 
-Select a word, phrase, or sentence in any app — ReadMate pops up with the meaning, Vietnamese translation, vocabulary breakdown, grammar notes, and natural examples.
+<p align="center">
+  A native macOS menu-bar app that <strong>instantly explains any text you select</strong>.
+  <br>
+  Built with Swift & SwiftUI. Free. Open source.
+</p>
+
+<p align="center">
+  <a href="https://github.com/kenzot25/read-mate/releases"><img src="https://img.shields.io/github/v/release/kenzot25/read-mate?color=blue&label=download&style=flat-square" alt="Download"></a>
+  <a href="#install"><img src="https://img.shields.io/badge/macOS-15%2B-black?style=flat-square&logo=apple" alt="macOS 15+"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
+</p>
+
+---
+
+## How it works
+
+Select a word, phrase, or sentence in **any app** — ReadMate pops up with the meaning, Vietnamese translation, vocabulary breakdown, grammar notes, and natural examples.
+
+### Empty state
+
+<p align="center">
+  <img src="screenshots/hud_empty.png" width="440" alt="ReadMate empty state">
+</p>
+
+### Explaining a word
+
+<p align="center">
+  <img src="screenshots/hud_explain.png" width="440" alt="ReadMate explaining 'perseverance'">
+</p>
+
+### Floating sparkles button
+
+<p align="center">
+  <img src="screenshots/floating_button.png" width="80" alt="Floating selection button">
+</p>
 
 ## Features
 
-- **Instant explain** — Select text anywhere, press `Cmd+Shift+E` (or click the floating sparkles button)
-- **Vietnamese translation** — Every lookup includes a Vietnamese meaning
-- **Vocabulary breakdown** — Key words extracted and explained individually
-- **Grammar insights** — Sentence structure and grammar patterns explained
-- **Natural examples** — Real-world usage examples for context
-- **AI-powered** — Uses Google Gemini for deep explanations (free API key from Google AI Studio)
-- **Offline fallback** — Falls back to a free dictionary API when no API key is configured
-- **Native macOS** — Menu bar agent, no Dock icon, feels right at home
+| Feature | Description |
+|---------|-------------|
+| **Instant explain** | Select text anywhere, press `Cmd+Shift+E` (or click the floating sparkles button) |
+| **Vietnamese translation** | Every lookup includes a Vietnamese meaning |
+| **Vocabulary breakdown** | Key words extracted and explained individually |
+| **Grammar insights** | Sentence structure and grammar patterns explained |
+| **Natural examples** | Real-world usage examples for context |
+| **AI-powered** | Uses Google Gemini for deep explanations (free API key from Google AI Studio) |
+| **Offline fallback** | Falls back to a free dictionary API when no API key is configured |
+| **Native macOS** | Menu bar agent, no Dock icon, feels right at home |
 
 ## Install
 
@@ -21,7 +59,7 @@ Select a word, phrase, or sentence in any app — ReadMate pops up with the mean
 
 Grab the latest `.dmg` from [Releases](https://github.com/kenzot25/read-mate/releases), open it, and drag ReadMate to your Applications folder.
 
-### Bypass Gatekeeper (required first launch)
+### Bypass Gatekeeper (first launch only)
 
 ReadMate is not signed with an Apple Developer certificate, so macOS will block it on first launch. Choose **one** of these methods:
 
@@ -45,7 +83,7 @@ ReadMate is not signed with an Apple Developer certificate, so macOS will block 
 xattr -cr /Applications/ReadMate.app
 ```
 
-This removes the quarantine flag macOS puts on downloaded apps. After this, ReadMate opens normally.
+After bypassing Gatekeeper once, ReadMate opens normally forever.
 
 ### Build from source
 

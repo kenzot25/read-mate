@@ -51,8 +51,16 @@ jobs:
 
             1. Download `ReadMate-*.dmg` below
             2. Open the DMG, drag **ReadMate** to your **Applications** folder
-            3. First launch: **right-click** the app → **Open** (macOS Gatekeeper requires this for unsigned apps)
+            3. **Bypass Gatekeeper** (first launch only — pick one method below)
             4. Grant Accessibility permission when prompted
+
+            ### Bypass Gatekeeper
+
+            macOS blocks unsigned apps. Choose one:
+
+            - **System Settings** — Try to open ReadMate, then go to **System Settings → Privacy & Security**, scroll down, click **Open Anyway**
+            - **Right-click** — In Finder, right-click ReadMate → **Open** → confirm
+            - **Terminal** — Run: `xattr -cr /Applications/ReadMate.app`
 
             **Requires macOS 15 (Sequoia) or later.**
           files: build/*.dmg

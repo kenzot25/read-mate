@@ -21,7 +21,31 @@ Select a word, phrase, or sentence in any app — ReadMate pops up with the mean
 
 Grab the latest `.dmg` from [Releases](https://github.com/kenzot25/read-mate/releases), open it, and drag ReadMate to your Applications folder.
 
-First launch: right-click the app and choose **Open** (required for unsigned apps on macOS).
+### Bypass Gatekeeper (required first launch)
+
+ReadMate is not signed with an Apple Developer certificate, so macOS will block it on first launch. Choose **one** of these methods:
+
+**Method 1 — System Settings (recommended)**
+
+1. Try to open ReadMate — you'll see a warning
+2. Open **System Settings** → **Privacy & Security**
+3. Scroll down — you'll see a message about ReadMate being blocked
+4. Click **Open Anyway**
+5. Confirm when prompted
+
+**Method 2 — Right-click**
+
+1. In Finder, go to **Applications**
+2. **Right-click** (or Control-click) ReadMate → choose **Open**
+3. Click **Open** in the dialog
+
+**Method 3 — Terminal (one command)**
+
+```bash
+xattr -cr /Applications/ReadMate.app
+```
+
+This removes the quarantine flag macOS puts on downloaded apps. After this, ReadMate opens normally.
 
 ### Build from source
 

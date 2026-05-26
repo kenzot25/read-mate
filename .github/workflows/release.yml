@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     runs-on: macos-15
@@ -30,8 +33,9 @@ jobs:
       - name: Build DMG
         run: |
           VERSION=${GITHUB_REF_NAME#v}
+          # Update Makefile VERSION to match tag
+          sed -i '' "s/^VERSION.*/VERSION     = ${VERSION}/" Makefile
           make dmg
-          mv "build/ReadMate-0.1.0.dmg" "build/ReadMate-${VERSION}.dmg" 2>/dev/null || true
           ls -la build/*.dmg
 
       - name: Create GitHub Release

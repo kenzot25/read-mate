@@ -1,0 +1,41 @@
+# Build
+.build/
+build/
+*.o
+*.swiftmodule
+*.swiftdoc
+*.abi.json
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE
+*.xcworkspace/
+*.xcuserdata/
+xcuserdata/
+DerivedData/
+.idea/
+*.swp
+*.swo
+*~
+
+# App bundle (built artifacts, not source)
+*.app
+*.dmg
+
+# Logs
+*.log
+app.log
+
+# Package manager
+Package.resolved
+
+# Secrets (never commit API keys)
+.env
+.env.*
+
+# Claude Code
+.claude/

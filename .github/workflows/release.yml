@@ -1,0 +1,58 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Xcode CLI tools
+        run: |
+          xcode-select -p || xcode-select --install 2>/dev/null || true
+
+      - name: Build release .app bundle
+        run: make release
+
+      - name: Ad-hoc code sign
+        run: |
+          codesign --deep --force --sign - \
+            --options runtime \
+            build/ReadMate.app
+          codesign --verify --deep --strict build/ReadMate.app
+
+      - name: Build DMG
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          make dmg
+          mv "build/ReadMate-0.1.0.dmg" "build/ReadMate-${VERSION}.dmg" 2>/dev/null || true
+          ls -la build/*.dmg
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ReadMate ${{ github.ref_name }}
+          body: |
+            ## What's new
+
+            See the commits below for changes.
+
+            ## Install
+
+            1. Download `ReadMate-*.dmg` below
+            2. Open the DMG, drag **ReadMate** to your **Applications** folder
+            3. First launch: **right-click** the app → **Open** (macOS Gatekeeper requires this for unsigned apps)
+            4. Grant Accessibility permission when prompted
+
+            **Requires macOS 15 (Sequoia) or later.**
+          files: build/*.dmg
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

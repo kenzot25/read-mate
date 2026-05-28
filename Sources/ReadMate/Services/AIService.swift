@@ -1,6 +1,6 @@
 import Foundation
 
-public enum AIError: Error, LocalizedError {
+public enum AIError: Error, LocalizedError, Equatable {
     case missingApiKey
     case invalidResponse
     case apiError(String)
@@ -29,7 +29,7 @@ public final class AIService: Sendable {
             throw AIError.missingApiKey
         }
         
-        let urlString = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=\(apiKey)"
+        let urlString = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=\(apiKey)"
         guard let url = URL(string: urlString) else {
             throw AIError.apiError("Invalid API Endpoint URL configuration.")
         }

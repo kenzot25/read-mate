@@ -108,7 +108,7 @@ public struct ExplainView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("SIMPLE MEANING")
                                 .font(.system(size: 9, weight: .bold))
-                                .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                                .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
 
                             Text(data.simpleMeaning)
                                 .font(.system(size: 13, weight: .medium))
@@ -120,7 +120,7 @@ public struct ExplainView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("VIETNAMESE")
                                 .font(.system(size: 9, weight: .bold))
-                                .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                                .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
 
                             Text(data.vietnameseMeaning)
                                 .font(.system(size: 13, weight: .semibold))
@@ -129,7 +129,7 @@ public struct ExplainView: View {
                         }
                         .padding(10)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color(red: 0.91, green: 0.94, blue: 1.0))
+                        .background(Color(red: 0.88, green: 0.93, blue: 1.0))
                         .cornerRadius(8)
 
                         // 3. Vocabulary Breakdown
@@ -137,7 +137,7 @@ public struct ExplainView: View {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("KEY VOCABULARY")
                                     .font(.system(size: 9, weight: .bold))
-                                    .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                                    .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
 
                                 ForEach(vocab) { item in
                                     VStack(alignment: .leading, spacing: 4) {
@@ -160,12 +160,12 @@ public struct ExplainView: View {
                                         if !item.example.isEmpty {
                                             Text("ex: \(item.example)")
                                                 .font(.system(size: 10, design: .serif))
-                                                .foregroundColor(Color(red: 0.45, green: 0.45, blue: 0.5))
+                                                .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.45))
                                                 .italic()
                                         }
                                     }
                                     .padding(8)
-                                    .background(Color(red: 0.96, green: 0.96, blue: 0.98))
+                                    .background(Color(red: 0.94, green: 0.94, blue: 0.97))
                                     .cornerRadius(6)
                                 }
                             }
@@ -176,7 +176,7 @@ public struct ExplainView: View {
                             VStack(alignment: .leading, spacing: 6) {
                                 Text("GRAMMAR DETAILS")
                                     .font(.system(size: 9, weight: .bold))
-                                    .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                                    .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
 
                                 Text(grammar)
                                     .font(.system(size: 12))
@@ -185,7 +185,7 @@ public struct ExplainView: View {
                             }
                             .padding(10)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color(red: 0.96, green: 0.96, blue: 0.98))
+                            .background(Color(red: 0.94, green: 0.94, blue: 0.97))
                             .cornerRadius(8)
                         }
 
@@ -193,7 +193,7 @@ public struct ExplainView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("NATURAL EXAMPLES")
                                 .font(.system(size: 9, weight: .bold))
-                                .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                                .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
 
                             ForEach(data.examples, id: \.self) { example in
                                 HStack(alignment: .top, spacing: 8) {
@@ -206,7 +206,7 @@ public struct ExplainView: View {
                                     Spacer()
                                     Button(action: { NSSpeechSynthesizer().startSpeaking(example) }) {
                                         Image(systemName: "speaker.wave.1.fill")
-                                            .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                                            .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
                                             .font(.system(size: 10))
                                     }
                                     .buttonStyle(.plain)
@@ -220,13 +220,13 @@ public struct ExplainView: View {
                             VStack(alignment: .leading, spacing: 6) {
                                 Text("ADDITIONAL NOTES (\(selectedTemplate.name))")
                                     .font(.system(size: 9, weight: .bold))
-                                    .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                                    .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
 
                                 Text(notes)
                                     .font(.system(size: 12, design: .monospaced))
                                     .foregroundColor(Color(red: 0.3, green: 0.25, blue: 0.05))
                                     .padding(8)
-                                    .background(Color(red: 1.0, green: 0.98, blue: 0.85))
+                                    .background(Color(red: 1.0, green: 0.97, blue: 0.78))
                                     .cornerRadius(6)
                             }
                         }
@@ -245,7 +245,7 @@ public struct ExplainView: View {
                         .foregroundColor(Color(red: 0.15, green: 0.15, blue: 0.18))
                     Text("Or type a word in the text box above to explain instantly.")
                         .font(.system(size: 10))
-                        .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                        .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 40)
                     Spacer()
@@ -261,16 +261,19 @@ public struct ExplainView: View {
                 HStack {
                     Text("Template:")
                         .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                        .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.4))
 
                     Picker("", selection: $selectedTemplate) {
                         ForEach(AITemplates.defaults) { template in
-                            Text(template.name).tag(template)
+                            Text(template.name)
+                                .foregroundColor(Color(red: 0.12, green: 0.12, blue: 0.15))
+                                .tag(template)
                         }
                     }
                     .labelsHidden()
                     .pickerStyle(.menu)
                     .frame(width: 180)
+                    .foregroundColor(Color(red: 0.12, green: 0.12, blue: 0.15))
                     .onChange(of: selectedTemplate) { _ in
                         triggerAnalysis()
                     }
@@ -312,6 +315,12 @@ public struct ExplainView: View {
             do {
                 let lookupResult: LookupResult
                 let hasApiKey = KeychainManager.shared.retrieve() != nil
+                let isPhrase = selectedText.trimmingCharacters(in: .whitespacesAndNewlines)
+                    .contains(where: { $0.isWhitespace || $0 == "\n" }) || selectedText.count > 20
+
+                if !hasApiKey && isPhrase {
+                    throw AIError.missingApiKey
+                }
 
                 if hasApiKey {
                     lookupResult = try await AIService.shared.explain(text: selectedText, template: selectedTemplate)

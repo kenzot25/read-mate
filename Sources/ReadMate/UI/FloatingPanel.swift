@@ -6,7 +6,7 @@ public class FloatingPanel: NSPanel {
     public init(contentRect: NSRect, backing: NSWindow.BackingStoreType, defer flag: Bool) {
         super.init(
             contentRect: contentRect,
-            styleMask: [.nonactivatingPanel, .fullSizeContentView],
+            styleMask: [.nonactivatingPanel, .borderless],
             backing: backing,
             defer: flag
         )
@@ -63,6 +63,8 @@ public class PanelController: NSObject, NSWindowDelegate {
         // ALWAYS update the content view to display the newly passed view/text
         let hostingView = NSHostingView(rootView: view)
         hostingView.autoresizingMask = [.width, .height]
+        hostingView.wantsLayer = true
+        hostingView.layer?.backgroundColor = NSColor.white.cgColor
         currentPanel.contentView = hostingView
         
         // Auto position panel near the cursor

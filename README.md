@@ -45,12 +45,13 @@ Select a word, phrase, or sentence in **any app** — ReadMate pops up with the 
 | Feature | Description |
 |---------|-------------|
 | **Instant explain** | Select text anywhere, press `Cmd+Shift+E` (or click the floating sparkles button) |
-| **Vietnamese translation** | Every lookup includes a Vietnamese meaning |
+| **Vietnamese translation** | Every lookup includes a Vietnamese meaning (via Cambridge English-Vietnamese Dictionary) |
+| **English-English mode** | Switch to pure English definitions from Cambridge Dictionary |
 | **Vocabulary breakdown** | Key words extracted and explained individually |
-| **Grammar insights** | Sentence structure and grammar patterns explained |
-| **Natural examples** | Real-world usage examples for context |
+| **Grammar insights** | Sentence structure, pronunciation, and verb conjugation |
+| **Natural examples** | Real-world usage examples with Vietnamese translations |
 | **AI-powered** | Uses Google Gemini for deep explanations (free API key from Google AI Studio) |
-| **Offline fallback** | Falls back to a free dictionary API when no API key is configured |
+| **Offline fallback** | Cambridge Dictionary scraping works without any API key |
 | **Native macOS** | Menu bar agent, no Dock icon, feels right at home |
 
 ## Install
@@ -95,13 +96,14 @@ cd read-mate
 make dmg
 ```
 
-The DMG will be at `build/ReadMate-0.1.0.dmg`.
+The DMG will be at `build/ReadMate-0.1.1.dmg`.
 
 ## Setup
 
 1. Launch ReadMate — a sparkles icon appears in your menu bar
 2. Grant **Accessibility** permission when prompted (needed to read selected text)
 3. (Optional) Right-click the menu bar icon → **Settings** → add your Gemini API key for AI-powered explanations
+4. (Optional) Switch Dictionary Mode between English-English and English-Vietnamese in Settings
 
 ## Usage
 
@@ -111,12 +113,15 @@ The DMG will be at `build/ReadMate-0.1.0.dmg`.
 | Quick explain | Select text, click the floating sparkles button that appears |
 | Type manually | Left-click the menu bar icon, enter text in the input bar |
 | Open settings | Right-click the menu bar icon → Settings |
+| Switch dictionary mode | Settings → English-English or English-Vietnamese |
 
 ## Tech Stack
 
 - **Swift / SwiftUI** — Native macOS app
 - **Swift Package Manager** — No Xcode project, pure SPM
+- **SwiftSoup** — HTML scraping for Cambridge Dictionary
 - **Google Gemini API** — AI explanations (optional)
+- **Cambridge Dictionary** — Free English-English and English-Vietnamese definitions
 - **macOS Keychain** — Secure API key storage
 - **Accessibility API** — Read text selection from other apps
 
@@ -130,10 +135,11 @@ Sources/ReadMate/
 │   └── WordLookup.swift          # Data models
 ├── Services/
 │   ├── AIService.swift           # Gemini AI integration
-│   ├── DictionaryService.swift   # Free dictionary fallback
+│   ├── DictionaryService.swift   # Cambridge Dictionary scraper
 │   ├── HistoryService.swift       # Local lookup history
 │   ├── HotKeyManager.swift        # Global keyboard shortcut
 │   ├── KeychainManager.swift      # macOS Keychain wrapper
+│   ├── PreferencesManager.swift # Settings persistence
 │   └── SelectionService.swift     # Accessibility text selection
 └── UI/
     ├── HUDView.swift              # Main popup container
@@ -143,7 +149,17 @@ Sources/ReadMate/
     ├── SettingsPanelView.swift     # Settings panel wrapper
     ├── SettingsView.swift          # Settings content
     └── VisualEffectView.swift      # NSVisualEffectView wrapper
+
+Tests/ReadMateTests/              # Unit + E2E tests
 ```
+
+## Testing
+
+```bash
+swift test
+```
+
+Includes unit tests for models, preferences, dictionary parsing, and E2E tests that call real APIs.
 
 ## License
 

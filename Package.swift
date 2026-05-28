@@ -9,12 +9,19 @@ let package = Package(
     products: [
         .executable(name: "ReadMate", targets: ["ReadMate"])
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.7.0")
+    ],
     targets: [
         .executableTarget(
             name: "ReadMate",
-            dependencies: [],
+            dependencies: ["SwiftSoup"],
             path: "Sources/ReadMate"
+        ),
+        .testTarget(
+            name: "ReadMateTests",
+            dependencies: ["ReadMate", "SwiftSoup"],
+            path: "Tests/ReadMateTests"
         )
     ]
 )

@@ -4,6 +4,7 @@ public struct SettingsView: View {
     @State private var apiKey: String = ""
     @State private var isShowingKey: Bool = false
     @State private var isSavedSuccessfully: Bool = false
+    @State private var dictionaryMode: DictionaryMode = PreferencesManager.shared.dictionaryMode
 
     public init() {}
 
@@ -82,6 +83,32 @@ public struct SettingsView: View {
                             .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
                             .lineLimit(2)
                             .fixedSize(horizontal: false, vertical: true)
+
+                        Divider()
+                            .background(Color(red: 0.9, green: 0.9, blue: 0.92))
+                            .padding(.vertical, 4)
+
+                        Text("DICTIONARY MODE")
+                            .font(.system(size: 10, weight: .semibold, design: .rounded))
+                            .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+
+                        Picker("", selection: $dictionaryMode) {
+                            ForEach(DictionaryMode.allCases, id: \.self) { mode in
+                                Text(mode.displayName).tag(mode)
+                            }
+                        }
+                        .labelsHidden()
+                        .pickerStyle(.menu)
+                        .frame(width: 220)
+                        .onChange(of: dictionaryMode) { newValue in
+                            PreferencesManager.shared.dictionaryMode = newValue
+                        }
+
+                        Text("English-English uses Cambridge Dictionary. English-Vietnamese uses Cambridge English-Vietnamese dictionary.")
+                            .font(.system(size: 10))
+                            .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.55))
+                            .lineLimit(2)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     .padding(12)
                     .background(Color(red: 0.96, green: 0.96, blue: 0.98))
@@ -111,7 +138,7 @@ public struct SettingsView: View {
 
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("ReadMate macOS v0.1")
+                                Text("ReadMate macOS v0.1.1")
                                     .font(.system(size: 12, weight: .semibold))
                                     .foregroundColor(Color(red: 0.15, green: 0.15, blue: 0.18))
                                 Text("Open-Source native reading assistant.")

@@ -13,11 +13,11 @@ public struct HUDView: View {
             // Bright solid background for high contrast readability
             Color.white
                 .cornerRadius(16)
-                .shadow(color: Color.black.opacity(0.15), radius: 12, x: 0, y: 4)
+                .shadow(color: Color.black.opacity(0.3), radius: 16, x: 0, y: 6)
 
-            // Subtle border
+            // Stronger border for contrast against dark backgrounds
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color(red: 0.88, green: 0.88, blue: 0.9), lineWidth: 1)
+                .stroke(Color(red: 0.75, green: 0.75, blue: 0.78), lineWidth: 1.5)
 
             VStack(spacing: 0) {
                 // Minimal header: title + close button
